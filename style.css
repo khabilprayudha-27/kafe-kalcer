@@ -1,0 +1,220 @@
+/* ==========================================================================
+   RESET & SETUP DASAR
+   ========================================================================== */
+
+/* Mengatur seluruh elemen agar perhitungan ukuran elemen (padding/border) konsisten */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Mengatur tampilan latar belakang seluruh halaman web */
+body {
+    background-color: #f4f7f6; /* Warna abu-abu lembut untuk latar belakang */
+    color: #333333;           /* Warna teks utama */
+    display: flex;
+    justify-content: center;   /* Memosisikan kontainer di tengah layar secara horizontal */
+    padding: 20px;
+}
+
+/* ==========================================================================
+   WADAH UTAMA (CONTAINER)
+   ========================================================================== */
+
+/* Wadah utama aplikasi web, didesain agar terlihat seperti layar smartphone */
+.container {
+    width: 100%;
+    max-width: 480px;          /* Batas lebar maksimum agar nyaman dilihat di ponsel/laptop */
+    background: #ffffff;       /* Latar belakang putih bersih */
+    border-radius: 20px;       /* Sudut melengkung halus */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Bayangan lembut untuk efek melayang */
+    overflow: hidden;          /* Memastikan elemen anak tidak keluar dari sudut melengkung */
+    padding-bottom: 30px;
+}
+
+/* ==========================================================================
+   HEADER (BAGIAN ATAS / JUDUL KAFE)
+   ========================================================================== */
+
+header {
+    background: #ff6b6b;       /* Warna aksen merah/coral yang hangat */
+    color: #ffffff;            /* Warna teks putih */
+    padding: 20px;
+    text-align: center;        /* Mengetengahkan teks judul dan deskripsi */
+}
+
+header h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 14px;
+    opacity: 0.9;              /* Sedikit transparansi pada deskripsi agar tampak elegan */
+}
+
+/* ==========================================================================
+   KOLOM PENCARIAN (SEARCH BAR)
+   ========================================================================== */
+
+.search-box {
+    padding: 15px 20px;
+    background: #ffffff;
+}
+
+/* Mengatur input teks pencarian */
+.search-box input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #dddddd; /* Garis tepi tipis abu-abu */
+    border-radius: 10px;       /* Sudut melengkung pada kotak input */
+    font-size: 14px;
+    outline: none;             /* Menghilangkan garis biru bawaan browser saat diklik */
+    transition: 0.3s;          /* Efek animasi transisi saat kursor aktif di dalam input */
+}
+
+/* Efek ketika pengguna mengklik atau mengetik di kotak pencarian */
+.search-box input:focus {
+    border-color: #ff6b6b;     /* Mengubah warna garis tepi menjadi warna tema kafe */
+    box-shadow: 0 0 5px rgba(255, 107, 107, 0.3); /* Efek cahaya lembut di sekeliling kotak */
+}
+
+/* ==========================================================================
+   DAFTAR MENU & KARTU ITEM (MENU ITEMS)
+   ========================================================================== */
+
+/* Area pembungkus daftar menu */
+.menu-list {
+    padding: 0 20px;
+}
+
+/* Kartu individual untuk setiap item makanan/minuman */
+.menu-item {
+    display: flex;             /* Menggunakan flexbox agar gambar dan teks berada berdampingan */
+    background: #fafafa;
+    border: 1px solid #eeeeee;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: transform 0.2s; /* Efek transisi saat kursor diarahkan ke kartu */
+}
+
+/* Efek saat kursor diarahkan atau disentuh pada kartu menu */
+.menu-item:hover {
+    transform: translateY(-2px); /* Kartu sedikit naik ke atas saat di-hover */
+}
+
+/* Bagian ikon/gambar menu */
+.menu-img {
+    width: 100px;
+    height: 100px;
+    background: #eeeeee;
+    display: flex;
+    align-items: center;       /* Memosisikan emoji/gambar tepat di tengah vertikal */
+    justify-content: center;    /* Memosisikan emoji/gambar tepat di tengah horizontal */
+    font-size: 30px;
+}
+
+/* Bagian informasi teks menu */
+.menu-info {
+    padding: 12px;
+    flex: 1;                   /* Mengisi sisa ruang kosong secara otomatis */
+    display: flex;
+    flex-direction: column;    /* Menyusun judul, deskripsi, dan harga secara vertikal */
+    justify-content: space-between;
+}
+
+.menu-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.menu-desc {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin: 4px 0;
+}
+
+/* Bagian bawah kartu (harga dan tombol) */
+.menu-footer {
+    display: flex;
+    justify-content: space-between; /* Memisah harga di kiri dan tombol pesan di kanan */
+    align-items: center;
+}
+
+.menu-price {
+    font-size: 14px;
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+/* ==========================================================================
+   TOMBOL PESAN (ORDER BUTTON)
+   ========================================================================== */
+
+.btn-order {
+    background: #27ae60;       /* Warna hijau khas aksi konfirmasi/pesan */
+    color: #ffffff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;           /* Mengubah bentuk kursor menjadi telunjuk saat berada di atas tombol */
+    transition: background 0.2s;
+}
+
+/* Efek saat tombol diklik atau ditunjuk */
+.btn-order:hover {
+    background: #219653;       /* Warna hijau menjadi sedikit lebih gelap */
+}
+
+/* ==========================================================================
+   NOTIFIKASI PESANAN (TOAST NOTIFICATION)
+   ========================================================================== */
+
+/* Kotak pop-up notifikasi yang muncul di bagian bawah layar */
+#toast {
+    visibility: hidden;        /* Tersembunyi secara bawaan (default) */
+    min-width: 250px;
+    background-color: #333333;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 12px;
+    position: fixed;            /* Mengunci posisi di atas elemen lainnya */
+    z-index: 100;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);/* Memosisikan notifikasi tepat di tengah bawah layar */
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Kelas yang ditambahkan oleh JavaScript ketika tombol pesan ditekan */
+#toast.show {
+    visibility: visible;
+    animation: fadeInOut 3s ease; /* Memanggil animasi pemunculan selama 3 detik */
+}
+
+/* Animasi pemunculan dan hilangnya notifikasi */
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        bottom: 10px;
+    }
+    20% {
+        opacity: 1;
+        bottom: 30px;
+    }
+    80% {
+        opacity: 1;
+        bottom: 30px;
+    }
+    100% {
+        opacity: 0;
+        bottom: 10px;
+    }
+}
