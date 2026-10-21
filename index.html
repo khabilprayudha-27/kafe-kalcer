@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Menu Kafe Digital</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            padding-bottom: 30px;
+        }
+
+        header {
+            background: #ff6b6b;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            padding: 15px 20px;
+            background: #fff;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: #ff6b6b;
+            box-shadow: 0 0 5px rgba(255, 107, 107, 0.3);
+        }
+
+        .menu-list {
+            padding: 0 20px;
+        }
+
+        .menu-item {
+            display: flex;
+            background: #fafafa;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .menu-img {
+            width: 100px;
+            height: 100px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .menu-info {
+            padding: 12px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .menu-desc {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin: 4px 0;
+        }
+
+        .menu-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-price {
+            font-size: 14px;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .btn-order {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-order:hover {
+            background: #219653;
+        }
+
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 12px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-size: 14px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        #toast.show {
+            visibility: visible;
+            animation: fadeInOut 3s ease;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; bottom: 10px; }
+            20% { opacity: 1; bottom: 30px; }
+            80% { opacity: 1; bottom: 30px; }
+            100% { opacity: 0; bottom: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Kafe Pemuda Mandiri</h1>
+            <p>Silakan pilih menu favoritmu di bawah ini</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Cari makanan atau minuman..." onkeyup="searchMenu()">
+        </div>
+
+        <div class="menu-list" id="menuContainer">
+            
+            <div class="menu-item" data-name="kopi susu gula aren">
+                <div class="menu-img">☕</div>
+                <div class="menu-info">
+                    <div>
+                        <div class="menu-title">Kopi Susu Gula Aren</div>
+                        <div class="menu-desc">Espresso, fresh milk, dan manisnya gula aren asli.</div>
+                    </div>
+                    <div class="menu-footer">
+                        <span class="menu-price">Rp 18.000</span>
+                        <button class="btn-order" onclick="pesanMenu('Kopi Susu Gula Aren')">Pesan</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-name="matcha latte">
+                <div class="menu-img">🍵</div>
+                <div class="menu-info">
+                    <div>
+                        <div class="menu-title">Matcha Latte</div>
+                        <div class="menu-desc">Bubuk matcha premium Jepang dengan susu lembut.</div>
+                    </div>
+                    <div class="menu-footer">
+                        <span class="menu-price">Rp 22.000</span>
+                        <button class="btn-order" onclick="pesanMenu('Matcha Latte')">Pesan</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-name="croissant keju">
+                <div class="menu-img">🥐</div>
+                <div class="menu-info">
+                    <div>
+                        <div class="menu-title">Croissant Keju</div>
+                        <div class="menu-desc">Roti pastri renyah dengan lumeran keju gurih di dalam.</div>
+                    </div>
+                    <div class="menu-footer">
+                        <span class="menu-price">Rp 15.000</span>
+                        <button class="btn-order" onclick="pesanMenu('Croissant Keju')">Pesan</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-name="kentang goreng sosis">
+                <div class="menu-img">🍟</div>
+                <div class="menu-info">
+                    <div>
+                        <div class="menu-title">Kentang Goreng & Sosis</div>
+                        <div class="menu-desc">Camilan gurih renyah pas untuk teman nongkrong.</div>
+                    </div>
+                    <div class="menu-footer">
+                        <span class="menu-price">Rp 20.000</span>
+                        <button class="btn-order" onclick="pesanMenu('Kentang Goreng & Sosis')">Pesan</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="toast">Pesanan berhasil dicatat!</div>
+
+    <script>
+        function searchMenu() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let items = document.getElementsByClassName('menu-item');
+
+            for (let i = 0; i < items.length; i++) {
+                let menuName = items[i].getAttribute('data-name');
+                
+                if (menuName.includes(input)) {
+                    items[i].style.display = "flex";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+
+        function pesanMenu(namaMakanan) {
+            let toast = document.getElementById("toast");
+            toast.innerText = "Pesanan '" + namaMakanan + "' berhasil dicatat!";
+            toast.className = "show";
+
+            setTimeout(function() { 
+                toast.className = toast.className.replace("show", ""); 
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
